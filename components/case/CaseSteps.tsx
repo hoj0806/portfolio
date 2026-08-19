@@ -1,6 +1,6 @@
 /**
  * 케이스 카드의 문제 / 해결 / 결과 한 덩어리.
- * 세 곳이 같은 컴포넌트를 쓴다. h3 + ol.
+ * 세 곳이 같은 컴포넌트를 쓴다. h4 + ol.
  */
 export function CaseSteps({
   heading,

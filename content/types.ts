@@ -28,7 +28,7 @@ export interface NavItem {
  */
 export interface Case {
   id: CaseId;
-  /** h2로 렌더된다 */
+  /** h3으로 렌더된다 */
   title: string;
   /** 다이어그램의 figcaption. 비어 있으면 자리 표시자 문구가 대신 들어간다. */
   figureCaption: string;
