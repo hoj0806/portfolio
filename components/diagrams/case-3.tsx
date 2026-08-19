@@ -71,7 +71,7 @@ export function Case3Diagram() {
           Index Scan
         </text>
         <text x="360" y="350" dominantBaseline="central">
-          Index Scan
+          같은 계획, 15회 반복
         </text>
         <text x="640" y="98" textAnchor="end" dominantBaseline="central">
           405 ms
