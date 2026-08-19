@@ -14,6 +14,18 @@ export function CaseCard({ item }: { item: Case }) {
       data-print="keep-together"
       className="scroll-mt-24 border-t border-border pt-8 first:border-t-0 first:pt-0"
     >
+      {/* 제목보다 눈에 띄면 안 되므로 밑줄은 hover에서만 보인다. */}
+      {item.projectLabel && (
+        <p className="mb-1.5 text-xs text-muted">
+          <a
+            href={`#${item.projectId}`}
+            className="underline-offset-4 hover:underline"
+          >
+            {item.projectLabel}
+          </a>
+        </p>
+      )}
+
       <h3 className="max-w-measure text-2xl font-bold tracking-tight sm:text-[1.75rem]">
         {item.title}
       </h3>

@@ -28,6 +28,10 @@ export interface NavItem {
  */
 export interface Case {
   id: CaseId;
+  /** 케이스 제목 위에 붙는 라벨. 어느 프로젝트의 이야기인지 밝힌다. 비면 렌더하지 않는다. */
+  projectLabel: string;
+  /** 라벨이 가리킬 프로젝트 카드의 id. Project.id와 같은 값이어야 한다. */
+  projectId: string;
   /** h3으로 렌더된다 */
   title: string;
   /** 다이어그램의 figcaption. 비어 있으면 자리 표시자 문구가 대신 들어간다. */

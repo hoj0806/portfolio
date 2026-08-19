@@ -11,8 +11,9 @@ function caseTitle(id: CaseId): string {
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
+      id={project.id}
       data-print="keep-together"
-      className="flex flex-col rounded-lg border border-border bg-surface p-4"
+      className="flex scroll-mt-24 flex-col rounded-lg border border-border bg-surface p-4"
     >
       <ProjectScreenshot
         src={project.screenshot}
