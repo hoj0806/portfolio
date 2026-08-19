@@ -1,12 +1,25 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { site } from "@/content/site";
 
+/** 화면에 보일 주소. href는 그대로 두고 표시 텍스트만 줄인다. */
+function displayUrl(url: string): string {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
 /** Contact — 이메일, GitHub, Blog. */
 export function Contact() {
   const entries = [
-    { label: "이메일", href: site.email ? `mailto:${site.email}` : "", text: site.email },
-    { label: "GitHub", href: site.githubUrl, text: site.githubUrl },
-    { label: "Blog", href: site.blogUrl, text: site.blogUrl },
+    {
+      label: "이메일",
+      href: site.email ? `mailto:${site.email}` : "",
+      text: site.email,
+    },
+    {
+      label: "GitHub",
+      href: site.githubUrl,
+      text: displayUrl(site.githubUrl),
+    },
+    { label: "Blog", href: site.blogUrl, text: displayUrl(site.blogUrl) },
   ].filter((entry) => entry.href !== "");
 
   return (
@@ -27,7 +40,7 @@ export function Contact() {
               <dd>
                 <a
                   href={entry.href}
-                  className="text-accent underline underline-offset-4 hover:no-underline break-all"
+                  className="break-all text-accent underline underline-offset-4 hover:no-underline"
                 >
                   {entry.text}
                 </a>
