@@ -5,13 +5,15 @@ import type { Project } from "./types";
  *
  * name / deployUrl / repoUrl은 spec.md에서 확정된 값이다.
  * stack 표기는 이력서와 맞춘다.
- * summary / screenshot은 직접 채운다.
+ * screenshot 파일은 public/screenshots/ 아래에 넣는다.
+ * 파일이 아직 없으면 ProjectScreenshot이 자리 표시자로 대체한다.
  */
 export const projects: readonly Project[] = [
   {
     id: "eggplant-market",
     name: "가지마켓 (Eggplant Market)",
-    summary: "",
+    summary:
+      "동네 반경 안의 중고물품을 사고파는 위치 기반 거래 플랫폼. 구현은 Claude Code와 협업했고, 기능 명세와 개발 원칙, 무엇을 통과해야 받아들일지에 대한 기준을 문서로 세운 뒤 진행했습니다.",
     stack: [
       "React 19.1",
       "TypeScript 5.7",
@@ -23,8 +25,9 @@ export const projects: readonly Project[] = [
       "Jest 29",
       "카카오맵 SDK",
     ],
-    screenshot: "",
-    screenshotAlt: "",
+    screenshot: "/screenshots/eggplant-market.webp",
+    screenshotAlt:
+      "가지마켓 게시물 상세 화면 — 상품 사진과 가격, 판매자 매너온도가 보인다",
     deployUrl: "https://eggplant-market-ga6d-flame.vercel.app/",
     repoUrl: "https://github.com/hoj0806/Eggplant-Market",
     relatedCaseIds: ["case-1", "case-2", "case-3"],
@@ -32,7 +35,8 @@ export const projects: readonly Project[] = [
   {
     id: "poke-card-flip",
     name: "PokeCardFlip",
-    summary: "",
+    summary:
+      "PokéAPI 데이터로 카드 매칭 게임과 도감을 제공하는 웹 게임. 와이어프레임부터 배포까지 혼자 진행했고, 151마리 데이터를 한 번만 받아 재사용하도록 캐시 계층을 두었습니다.",
     stack: [
       "React 19.2",
       "TypeScript 5.9",
@@ -43,8 +47,9 @@ export const projects: readonly Project[] = [
       "framer-motion",
       "immer",
     ],
-    screenshot: "",
-    screenshotAlt: "",
+    screenshot: "/screenshots/poke-card-flip.webp",
+    screenshotAlt:
+      "PokeCardFlip 카드 매칭 게임 화면 — 뒤집힌 카드 격자와 점수, 콤보 표시",
     deployUrl: "https://poke-card-flip.vercel.app/",
     repoUrl: "https://github.com/hoj0806/poke-card-flip",
     relatedCaseIds: [],
@@ -52,7 +57,8 @@ export const projects: readonly Project[] = [
   {
     id: "planyang",
     name: "Planyang",
-    summary: "",
+    summary:
+      "대시보드를 팀원과 공유하고 초대·권한을 관리하는 일정 관리 협업 툴. 같은 포지션 4명이 함께 만들었고, 화면 작업이 시작되기 전에 Redux Toolkit 상태 레이어를 세우는 역할을 맡았습니다.",
     stack: [
       "Next.js 14.2",
       "TypeScript 5.4",
@@ -61,8 +67,8 @@ export const projects: readonly Project[] = [
       "axios",
       "Sass",
     ],
-    screenshot: "",
-    screenshotAlt: "",
+    screenshot: "/screenshots/planyang.webp",
+    screenshotAlt: "Planyang 대시보드 화면 — 컬럼별 할 일 카드와 팀원 목록",
     deployUrl: "https://planyang-ac8o.vercel.app/",
     repoUrl: "https://github.com/sprint-part3-team1/Planyang",
     relatedCaseIds: ["case-4", "case-5"],
