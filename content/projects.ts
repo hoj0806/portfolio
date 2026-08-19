@@ -5,8 +5,9 @@ import type { Project } from "./types";
  *
  * name / deployUrl / repoUrl은 spec.md에서 확정된 값이다.
  * stack 표기는 이력서와 맞춘다.
- * screenshot 파일은 public/screenshots/ 아래에 넣는다.
- * 파일이 아직 없으면 ProjectScreenshot이 자리 표시자로 대체한다.
+ * screenshot은 파일을 public/screenshots/ 아래에 실제로 넣은 뒤에 채운다.
+ * 경로만 먼저 적어 두면 서버가 내려주는 초기 HTML에 <img>가 그대로 실려,
+ * JS 실행 전이나 크롤러에게 404 이미지가 노출된다.
  */
 export const projects: readonly Project[] = [
   {
@@ -25,7 +26,7 @@ export const projects: readonly Project[] = [
       "Jest 29",
       "카카오맵 SDK",
     ],
-    screenshot: "/screenshots/eggplant-market.webp",
+    screenshot: "",
     screenshotAlt:
       "가지마켓 게시물 상세 화면 — 상품 사진과 가격, 판매자 매너온도가 보인다",
     deployUrl: "https://eggplant-market-ga6d-flame.vercel.app/",
@@ -47,7 +48,7 @@ export const projects: readonly Project[] = [
       "framer-motion",
       "immer",
     ],
-    screenshot: "/screenshots/poke-card-flip.webp",
+    screenshot: "",
     screenshotAlt:
       "PokeCardFlip 카드 매칭 게임 화면 — 뒤집힌 카드 격자와 점수, 콤보 표시",
     deployUrl: "https://poke-card-flip.vercel.app/",
@@ -67,7 +68,7 @@ export const projects: readonly Project[] = [
       "axios",
       "Sass",
     ],
-    screenshot: "/screenshots/planyang.webp",
+    screenshot: "",
     screenshotAlt: "Planyang 대시보드 화면 — 컬럼별 할 일 카드와 팀원 목록",
     deployUrl: "https://planyang-ac8o.vercel.app/",
     repoUrl: "https://github.com/sprint-part3-team1/Planyang",
