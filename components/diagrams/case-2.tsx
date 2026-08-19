@@ -1,42 +1,141 @@
 /**
- * 케이스 2 다이어그램.
+ * 케이스 2 다이어그램 — 채팅 읽음 처리 변경 전후.
  *
- * excalidraw에서 그린 뒤 SVG로 내보내 아래 <svg> 안에 붙여넣는다.
- *
- * 내보내기 설정 — Background / Dark mode / Embed scene 셋 다 끈다.
- *  - Background를 켜면 흰 rect가 박혀 다크 모드에서 흰 판이 남는다.
- *  - Dark mode를 켜면 색이 뒤집혀 치환해야 할 값만 늘어난다.
- *  - Embed scene을 켜면 씬 JSON 전체가 파일에 실려 용량이 몇 배가 된다.
- *
- * 붙여넣은 뒤 할 일:
- *  1. 색을 currentColor로 바꾼다. excalidraw 기본 선·글자색은 #1e1e1e이라
- *     보통 이 한 값만 전부 치환하면 된다. 강조할 요소는 색을 따로 주지 말고
- *     stroke="currentColor"를 유지한 채 className="text-accent"를 준다.
- *  2. defs 안의 style class="style-fonts" 블록에 손글씨 폰트가 base64로
- *     박혀 있으면 통째로 지운다. 지우면 글자가 페이지 폰트를 그대로 따라간다.
- *  3. 하이픈 속성을 JSX 형태로 바꾼다. stroke-width -> strokeWidth,
- *     stroke-linecap -> strokeLinecap, class -> className,
- *     xmlns:xlink -> xmlnsXlink. HTML 주석은 지운다.
- *  4. 바깥 svg의 width/height 속성은 지우고 viewBox만 남긴다.
- *     폭은 아래 className이 맞춘다.
- *  5. 글자가 text 요소로 남아 있는지 확인한다. 내보낸 파일에서
- *     grep -c "<text" 가 0이면 path로 바뀐 것이라, 선택도 검색도 안 되고
- *     용량도 커진다. 그때는 폰트를 바꿔 다시 내보낸다.
- *
- * 다 됐으면 아래 hasContent를 true로 바꾼다.
- * false인 동안에는 CaseFigure가 자리 표시자를 대신 보여준다.
+ * 두 줄의 앞 두 칸이 같다는 것이 요점이다. 메시지는 원래 제때 왔고
+ * 세 번째 칸(방 요약 재조회)만 왕복을 하나 더 끼우고 있었다.
  */
-export const hasContent = false;
+export const hasContent = true;
 
 export function Case2Diagram() {
   return (
     <svg
-      viewBox="0 0 720 320"
-      className="h-auto w-full min-w-[560px] text-fg"
+      viewBox="0 0 720 470"
+      className="h-auto w-full min-w-[600px] text-fg"
       aria-hidden="true"
       focusable="false"
     >
-      {/* 여기에 그린다 */}
+      <defs>
+        <marker
+          id="case2-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto-start-reverse"
+        >
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="currentColor" strokeWidth="1">
+        <rect x="40" y="80" width="135" height="48" rx="8" />
+        <rect x="195" y="80" width="135" height="48" rx="8" />
+        <rect x="505" y="80" width="135" height="48" rx="8" />
+        <rect x="40" y="240" width="135" height="48" rx="8" />
+        <rect x="195" y="240" width="135" height="48" rx="8" />
+        <rect x="505" y="240" width="135" height="48" rx="8" />
+      </g>
+
+      <g
+        className="text-accent"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      >
+        <rect x="350" y="80" width="135" height="48" rx="8" />
+        <rect x="350" y="240" width="135" height="48" rx="8" />
+      </g>
+
+      <g
+        stroke="currentColor"
+        strokeWidth="1"
+        markerEnd="url(#case2-arrow)"
+        fill="none"
+      >
+        <line x1="179" y1="104" x2="191" y2="104" />
+        <line x1="334" y1="104" x2="346" y2="104" />
+        <line x1="489" y1="104" x2="501" y2="104" />
+        <line x1="179" y1="264" x2="191" y2="264" />
+        <line x1="334" y1="264" x2="346" y2="264" />
+        <line x1="489" y1="264" x2="501" y2="264" />
+      </g>
+
+      <g fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="40" y="58" dominantBaseline="central">
+          변경 전
+        </text>
+        <text x="40" y="218" dominantBaseline="central">
+          변경 후
+        </text>
+        <text x="107" y="104" textAnchor="middle" dominantBaseline="central">
+          메시지 도착
+        </text>
+        <text x="262" y="104" textAnchor="middle" dominantBaseline="central">
+          목록 갱신
+        </text>
+        <text x="572" y="104" textAnchor="middle" dominantBaseline="central">
+          읽음 처리
+        </text>
+        <text x="107" y="264" textAnchor="middle" dominantBaseline="central">
+          메시지 도착
+        </text>
+        <text x="262" y="264" textAnchor="middle" dominantBaseline="central">
+          목록 갱신
+        </text>
+        <text x="572" y="264" textAnchor="middle" dominantBaseline="central">
+          읽음 처리
+        </text>
+      </g>
+
+      <g className="text-accent" fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="417" y="104" textAnchor="middle" dominantBaseline="central">
+          방 요약 재조회
+        </text>
+        <text x="417" y="264" textAnchor="middle" dominantBaseline="central">
+          화면에서 셈
+        </text>
+        <text x="572" y="148" textAnchor="middle" dominantBaseline="central">
+          21.3초
+        </text>
+        <text x="572" y="308" textAnchor="middle" dominantBaseline="central">
+          0.8초
+        </text>
+      </g>
+
+      <g className="text-muted" fill="currentColor" fontSize="12">
+        <text x="417" y="148" textAnchor="middle" dominantBaseline="central">
+          왕복 하나가 더 끼어 있음
+        </text>
+        <text x="417" y="308" textAnchor="middle" dominantBaseline="central">
+          서버에 다시 묻지 않음
+        </text>
+        <text x="40" y="368" dominantBaseline="central">
+          변경 전 실제 측정값
+        </text>
+        <text x="40" y="398" dominantBaseline="central">
+          구매자 → 판매자
+        </text>
+        <text x="40" y="424" dominantBaseline="central">
+          판매자 → 구매자
+        </text>
+        <text x="300" y="398" textAnchor="end" dominantBaseline="central">
+          21.30초
+        </text>
+        <text x="300" y="424" textAnchor="end" dominantBaseline="central">
+          1.47초 / 1.27초
+        </text>
+      </g>
+
+      <line
+        x1="40"
+        y1="382"
+        x2="300"
+        y2="382"
+        stroke="currentColor"
+        strokeWidth="1"
+        opacity="0.3"
+      />
     </svg>
   );
 }

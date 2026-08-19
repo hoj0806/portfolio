@@ -1,42 +1,123 @@
 /**
- * 케이스 5 다이어그램.
+ * 케이스 5 다이어그램 — 이어 붙일 때와 갈아 끼울 때.
  *
- * excalidraw에서 그린 뒤 SVG로 내보내 아래 <svg> 안에 붙여넣는다.
- *
- * 내보내기 설정 — Background / Dark mode / Embed scene 셋 다 끈다.
- *  - Background를 켜면 흰 rect가 박혀 다크 모드에서 흰 판이 남는다.
- *  - Dark mode를 켜면 색이 뒤집혀 치환해야 할 값만 늘어난다.
- *  - Embed scene을 켜면 씬 JSON 전체가 파일에 실려 용량이 몇 배가 된다.
- *
- * 붙여넣은 뒤 할 일:
- *  1. 색을 currentColor로 바꾼다. excalidraw 기본 선·글자색은 #1e1e1e이라
- *     보통 이 한 값만 전부 치환하면 된다. 강조할 요소는 색을 따로 주지 말고
- *     stroke="currentColor"를 유지한 채 className="text-accent"를 준다.
- *  2. defs 안의 style class="style-fonts" 블록에 손글씨 폰트가 base64로
- *     박혀 있으면 통째로 지운다. 지우면 글자가 페이지 폰트를 그대로 따라간다.
- *  3. 하이픈 속성을 JSX 형태로 바꾼다. stroke-width -> strokeWidth,
- *     stroke-linecap -> strokeLinecap, class -> className,
- *     xmlns:xlink -> xmlnsXlink. HTML 주석은 지운다.
- *  4. 바깥 svg의 width/height 속성은 지우고 viewBox만 남긴다.
- *     폭은 아래 className이 맞춘다.
- *  5. 글자가 text 요소로 남아 있는지 확인한다. 내보낸 파일에서
- *     grep -c "<text" 가 0이면 path로 바뀐 것이라, 선택도 검색도 안 되고
- *     용량도 커진다. 그때는 폰트를 바꿔 다시 내보낸다.
- *
- * 다 됐으면 아래 hasContent를 true로 바꾼다.
- * false인 동안에는 CaseFigure가 자리 표시자를 대신 보여준다.
+ * 두 열이 같은 목록을 다르게 다룬다는 것이 요점이다.
+ * 아래쪽은 감시 요소가 화면에 들어와도 항상 요청하지는 않는다는 조건.
  */
-export const hasContent = false;
+export const hasContent = true;
 
 export function Case5Diagram() {
   return (
     <svg
-      viewBox="0 0 720 320"
-      className="h-auto w-full min-w-[560px] text-fg"
+      viewBox="0 0 720 500"
+      className="h-auto w-full min-w-[600px] text-fg"
       aria-hidden="true"
       focusable="false"
     >
-      {/* 여기에 그린다 */}
+      <defs>
+        <marker
+          id="case5-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto-start-reverse"
+        >
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="currentColor" strokeWidth="1">
+        <rect x="40" y="76" width="290" height="40" rx="8" />
+        <rect x="40" y="136" width="290" height="40" rx="8" />
+        <rect x="390" y="76" width="290" height="40" rx="8" />
+        <rect x="390" y="136" width="290" height="40" rx="8" />
+        <rect x="40" y="378" width="170" height="44" rx="8" />
+        <rect x="250" y="368" width="250" height="64" rx="8" />
+      </g>
+
+      <g
+        className="text-accent"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      >
+        <rect x="40" y="196" width="290" height="44" rx="8" />
+        <rect x="390" y="196" width="290" height="44" rx="8" />
+        <rect x="540" y="378" width="140" height="44" rx="8" />
+      </g>
+
+      <g
+        stroke="currentColor"
+        strokeWidth="1"
+        markerEnd="url(#case5-arrow)"
+        fill="none"
+      >
+        <line x1="185" y1="120" x2="185" y2="132" />
+        <line x1="185" y1="180" x2="185" y2="192" />
+        <line x1="535" y1="120" x2="535" y2="132" />
+        <line x1="535" y1="180" x2="535" y2="192" />
+        <line x1="214" y1="400" x2="246" y2="400" />
+        <line x1="504" y1="400" x2="536" y2="400" />
+      </g>
+
+      <g fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="40" y="54" dominantBaseline="central">
+          스크롤로 더 받을 때
+        </text>
+        <text x="390" y="54" dominantBaseline="central">
+          검색어가 바뀔 때
+        </text>
+        <text x="185" y="96" textAnchor="middle" dominantBaseline="central">
+          cursorId 유지
+        </text>
+        <text x="185" y="156" textAnchor="middle" dominantBaseline="central">
+          다음 5건 요청
+        </text>
+        <text x="535" y="96" textAnchor="middle" dominantBaseline="central">
+          cursorId 버림
+        </text>
+        <text x="535" y="156" textAnchor="middle" dominantBaseline="central">
+          첫 5건 요청
+        </text>
+        <text x="40" y="336" dominantBaseline="central">
+          중복 요청 방지
+        </text>
+        <text x="125" y="400" textAnchor="middle" dominantBaseline="central">
+          감시 요소 진입
+        </text>
+      </g>
+
+      <g className="text-accent" fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="185" y="218" textAnchor="middle" dominantBaseline="central">
+          기존 목록 뒤에 이어 붙임
+        </text>
+        <text x="535" y="218" textAnchor="middle" dominantBaseline="central">
+          목록 전체를 갈아 끼움
+        </text>
+        <text x="610" y="400" textAnchor="middle" dominantBaseline="central">
+          다음 묶음 요청
+        </text>
+      </g>
+
+      <g className="text-muted" fill="currentColor" fontSize="12">
+        <text x="185" y="266" textAnchor="middle" dominantBaseline="central">
+          [1..15] + [16..20]
+        </text>
+        <text x="535" y="266" textAnchor="middle" dominantBaseline="central">
+          [검색 결과 1..5]
+        </text>
+        <text x="375" y="386" textAnchor="middle" dominantBaseline="central">
+          첫 조회가 끝났는가
+        </text>
+        <text x="375" y="412" textAnchor="middle" dominantBaseline="central">
+          이어 받을 커서가 남았는가
+        </text>
+        <text x="250" y="452" dominantBaseline="central">
+          둘 중 하나라도 아니면 요청하지 않는다
+        </text>
+      </g>
     </svg>
   );
 }

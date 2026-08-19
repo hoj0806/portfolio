@@ -1,42 +1,121 @@
 /**
- * 케이스 1 다이어그램.
+ * 케이스 1 다이어그램 — AI 협업 개발 체계.
  *
- * excalidraw에서 그린 뒤 SVG로 내보내 아래 <svg> 안에 붙여넣는다.
- *
- * 내보내기 설정 — Background / Dark mode / Embed scene 셋 다 끈다.
- *  - Background를 켜면 흰 rect가 박혀 다크 모드에서 흰 판이 남는다.
- *  - Dark mode를 켜면 색이 뒤집혀 치환해야 할 값만 늘어난다.
- *  - Embed scene을 켜면 씬 JSON 전체가 파일에 실려 용량이 몇 배가 된다.
- *
- * 붙여넣은 뒤 할 일:
- *  1. 색을 currentColor로 바꾼다. excalidraw 기본 선·글자색은 #1e1e1e이라
- *     보통 이 한 값만 전부 치환하면 된다. 강조할 요소는 색을 따로 주지 말고
- *     stroke="currentColor"를 유지한 채 className="text-accent"를 준다.
- *  2. defs 안의 style class="style-fonts" 블록에 손글씨 폰트가 base64로
- *     박혀 있으면 통째로 지운다. 지우면 글자가 페이지 폰트를 그대로 따라간다.
- *  3. 하이픈 속성을 JSX 형태로 바꾼다. stroke-width -> strokeWidth,
- *     stroke-linecap -> strokeLinecap, class -> className,
- *     xmlns:xlink -> xmlnsXlink. HTML 주석은 지운다.
- *  4. 바깥 svg의 width/height 속성은 지우고 viewBox만 남긴다.
- *     폭은 아래 className이 맞춘다.
- *  5. 글자가 text 요소로 남아 있는지 확인한다. 내보낸 파일에서
- *     grep -c "<text" 가 0이면 path로 바뀐 것이라, 선택도 검색도 안 되고
- *     용량도 커진다. 그때는 폰트를 바꿔 다시 내보낸다.
- *
- * 다 됐으면 아래 hasContent를 true로 바꾼다.
- * false인 동안에는 CaseFigure가 자리 표시자를 대신 보여준다.
+ * 색은 currentColor를 기본으로 쓰고, 강조가 필요한 곳만 text-accent를,
+ * 보조 설명은 text-muted를 준다. 그래야 라이트/다크가 자동으로 따라간다.
+ * marker id는 페이지 안에서 유일해야 하므로 케이스 번호를 붙였다.
  */
-export const hasContent = false;
+export const hasContent = true;
 
 export function Case1Diagram() {
   return (
     <svg
-      viewBox="0 0 720 320"
-      className="h-auto w-full min-w-[560px] text-fg"
+      viewBox="0 0 720 570"
+      className="h-auto w-full min-w-[600px] text-fg"
       aria-hidden="true"
       focusable="false"
     >
-      {/* 여기에 그린다 */}
+      <defs>
+        <marker
+          id="case1-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto-start-reverse"
+        >
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="currentColor" strokeWidth="1">
+        <rect x="40" y="50" width="200" height="210" rx="16" opacity="0.35" />
+        <rect x="60" y="94" width="160" height="40" rx="8" />
+        <rect x="60" y="146" width="160" height="40" rx="8" />
+        <rect x="60" y="198" width="160" height="40" rx="8" />
+        <rect x="320" y="133" width="150" height="44" rx="8" />
+        <rect x="300" y="213" width="190" height="56" rx="8" />
+        <rect x="300" y="309" width="190" height="72" rx="8" />
+        <rect x="280" y="497" width="230" height="44" rx="8" />
+      </g>
+
+      <g
+        className="text-accent"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      >
+        <rect x="310" y="413" width="170" height="56" rx="8" />
+      </g>
+
+      <g
+        stroke="currentColor"
+        strokeWidth="1"
+        markerEnd="url(#case1-arrow)"
+        fill="none"
+      >
+        <line x1="244" y1="155" x2="314" y2="155" />
+        <line x1="395" y1="181" x2="395" y2="207" />
+        <line x1="395" y1="273" x2="395" y2="303" />
+        <line x1="395" y1="385" x2="395" y2="407" />
+        <line x1="395" y1="473" x2="395" y2="491" />
+        <path d="M490 241 H544 V155 H476" />
+      </g>
+
+      <g fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="140" y="76" textAnchor="middle" dominantBaseline="central">
+          문서
+        </text>
+        <text x="140" y="114" textAnchor="middle" dominantBaseline="central">
+          기능 명세
+        </text>
+        <text x="140" y="166" textAnchor="middle" dominantBaseline="central">
+          개발 3원칙
+        </text>
+        <text x="140" y="218" textAnchor="middle" dominantBaseline="central">
+          코딩 컨벤션
+        </text>
+        <text x="395" y="155" textAnchor="middle" dominantBaseline="central">
+          작업 요청
+        </text>
+        <text x="395" y="231" textAnchor="middle" dominantBaseline="central">
+          eslint 게이트
+        </text>
+        <text x="395" y="329" textAnchor="middle" dominantBaseline="central">
+          테스트 4갈래
+        </text>
+        <text x="395" y="519" textAnchor="middle" dominantBaseline="central">
+          develop PR 생성 · 기록
+        </text>
+      </g>
+
+      <g className="text-accent" fill="currentColor" fontSize="14" fontWeight="500">
+        <text x="395" y="431" textAnchor="middle" dominantBaseline="central">
+          사람 검수
+        </text>
+      </g>
+
+      <g className="text-muted" fill="currentColor" fontSize="12">
+        <text x="395" y="251" textAnchor="middle" dominantBaseline="central">
+          any 금지 · 함수 분리
+        </text>
+        <text x="395" y="350" textAnchor="middle" dominantBaseline="central">
+          unit · integration
+        </text>
+        <text x="395" y="368" textAnchor="middle" dominantBaseline="central">
+          build · smoke
+        </text>
+        <text x="552" y="200" dominantBaseline="central">
+          반려
+        </text>
+        <text x="395" y="451" textAnchor="middle" dominantBaseline="central">
+          받아들일지 판단
+        </text>
+        <text x="496" y="441" dominantBaseline="central">
+          내가 서는 자리
+        </text>
+      </g>
     </svg>
   );
 }
