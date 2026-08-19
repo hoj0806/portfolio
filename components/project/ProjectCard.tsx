@@ -1,7 +1,7 @@
-import Image from "next/image";
-
 import { cases } from "@/content/cases";
 import type { CaseId, Project } from "@/content/types";
+
+import { ProjectScreenshot } from "./ProjectScreenshot";
 
 function caseTitle(id: CaseId): string {
   return cases.find((item) => item.id === id)?.title ?? id;
@@ -14,20 +14,10 @@ export function ProjectCard({ project }: { project: Project }) {
       data-print="keep-together"
       className="flex flex-col rounded-lg border border-border bg-surface p-4"
     >
-      {project.screenshot ? (
-        <Image
-          src={project.screenshot}
-          alt={project.screenshotAlt}
-          width={640}
-          height={400}
-          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-          className="h-auto w-full rounded-md border border-border"
-        />
-      ) : (
-        <div className="flex aspect-[16/10] items-center justify-center rounded-md border border-dashed border-border text-sm text-muted">
-          스크린샷 준비 중
-        </div>
-      )}
+      <ProjectScreenshot
+        src={project.screenshot}
+        alt={project.screenshotAlt}
+      />
 
       <h3 className="mt-4 text-lg font-semibold">{project.name}</h3>
 
