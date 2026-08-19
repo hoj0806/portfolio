@@ -16,7 +16,6 @@ export function Case4Diagram() {
     <svg
       viewBox="0 0 720 320"
       className="h-auto w-full min-w-[560px] text-fg"
-      role="img"
       aria-hidden="true"
       focusable="false"
     >

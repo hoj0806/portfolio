@@ -11,7 +11,7 @@ export function CaseSteps({
 }) {
   return (
     <section className="mt-block">
-      <h3 className="text-lg font-semibold">{heading}</h3>
+      <h4 className="text-lg font-semibold">{heading}</h4>
 
       {items.length === 0 ? (
         <p className="mt-2 text-sm text-muted">작성 예정</p>

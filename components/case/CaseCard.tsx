@@ -14,9 +14,9 @@ export function CaseCard({ item }: { item: Case }) {
       data-print="keep-together"
       className="scroll-mt-24 border-t border-border pt-8 first:border-t-0 first:pt-0"
     >
-      <h2 className="max-w-measure text-2xl font-bold tracking-tight sm:text-[1.75rem]">
+      <h3 className="max-w-measure text-2xl font-bold tracking-tight sm:text-[1.75rem]">
         {item.title}
-      </h2>
+      </h3>
 
       <CaseFigure caseId={item.id} caption={item.figureCaption} />
 
