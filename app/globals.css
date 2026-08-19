@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./fonts.css";
+@import "./font-fallback.css";
 
 /* 다크 모드는 <html>의 .dark 클래스로 전환한다. lib/theme.ts가 이 클래스를 관리한다. */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -36,8 +37,9 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
 
-  --font-sans: "Pretendard Variable", "Pretendard", system-ui, -apple-system,
-    "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-sans: "Pretendard Variable", "Pretendard Fallback", system-ui,
+    -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic",
+    sans-serif;
 
   /* 간격 — design.md: 섹션 96px, 케이스 64px, 카드 내부 블록 24px */
   --spacing-section: 6rem;

@@ -1,0 +1,30 @@
+/* ---------------------------------------------------------------
+   폴백 폰트 — Pretendard가 안 뜬 상태에서도 줄바꿈과 줄 높이가 같도록
+   메트릭을 맞춘다. 아래 수치는 폰트 파일에서 직접 측정한 값이다.
+
+     Pretendard   ascent 1950 / descent 494 / upem 2048
+     한글 평균 자폭  Pretendard 0.8643em vs 시스템 한글 폰트 1.0000em
+     라틴 평균 자폭  Pretendard 0.5063em vs 시스템 한글 폰트 0.5032em
+
+   Pretendard의 한글은 전각이 아니라서, 하나의 size-adjust로 한글과 라틴을
+   동시에 맞출 수 없다. unicode-range로 갈라 각각 맞춘다.
+   --------------------------------------------------------------- */
+@font-face {
+  font-family: "Pretendard Fallback";
+  src: local("Apple SD Gothic Neo"), local("Malgun Gothic"), local("맑은 고딕");
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3,
+    U+D7B0-D7FF;
+  size-adjust: 86.43%;
+  ascent-override: 110.17%;
+  descent-override: 27.91%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Pretendard Fallback";
+  src: local("Apple SD Gothic Neo"), local("Malgun Gothic"), local("맑은 고딕");
+  size-adjust: 100.6%;
+  ascent-override: 94.64%;
+  descent-override: 23.98%;
+  line-gap-override: 0%;
+}
