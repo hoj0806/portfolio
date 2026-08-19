@@ -11,5 +11,5 @@ export const site: SiteProfile = {
   email: "",
   githubUrl: "",
   blogUrl: "",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "",
 };
