@@ -7,9 +7,26 @@ import { themeInitScript } from "@/lib/theme";
 
 import "./globals.css";
 
+/** 공유 카드에 뜨는 제목. 이름과 직군을 그대로 쓴다. */
+const shareTitle =
+  site.name && site.role ? `${site.name} — ${site.role}` : "포트폴리오";
+const shareDescription = site.tagline || "프론트엔드 개발자 포트폴리오";
+
 export const metadata: Metadata = {
   title: site.name ? `${site.name} — 포트폴리오` : "포트폴리오",
-  description: site.tagline || "프론트엔드 개발자 포트폴리오",
+  description: shareDescription,
+  openGraph: {
+    title: shareTitle,
+    description: shareDescription,
+    type: "website",
+    locale: "ko_KR",
+  },
+  // og 이미지가 아직 없으므로 텍스트만 나오는 summary 카드를 쓴다.
+  twitter: {
+    card: "summary",
+    title: shareTitle,
+    description: shareDescription,
+  },
 };
 
 export const viewport: Viewport = {
