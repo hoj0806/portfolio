@@ -31,15 +31,20 @@ export function ProjectScreenshot({ src, alt }: { src: string; alt: string }) {
   }
 
   return (
-    <Image
-      ref={ref}
-      src={src}
-      alt={alt}
-      width={640}
-      height={400}
-      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-      onError={() => setFailed(true)}
-      className="h-auto w-full rounded-md border border-border"
-    />
+    // 세로가 긴 것과 가로가 긴 것이 섞여 있어 비율을 카드 쪽에서 고정한다.
+    // 그래야 세 카드의 이미지 높이가 같고, 로드 전후로 레이아웃이 밀리지 않는다.
+    // 화면 위쪽(헤더·첫 행)이 무엇을 만든 것인지 가장 잘 보여주므로 위를 기준으로 자른다.
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-border">
+      <Image
+        ref={ref}
+        src={src}
+        alt={alt}
+        fill
+        // 카드 폭은 화면이 넓어져도 고정된다. vw로 잡으면 실제보다 두 배 큰 파일을 받는다.
+        sizes="(min-width: 1024px) 200px, (min-width: 640px) 320px, calc(100vw - 4rem)"
+        onError={() => setFailed(true)}
+        className="object-cover object-top"
+      />
+    </div>
   );
 }
