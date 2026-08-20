@@ -116,12 +116,32 @@ export const cases: readonly Case[] = [
   },
   {
     id: "case-4",
-    title: "",
-    figureCaption: "",
-    problem: [],
-    solution: [],
-    result: [],
-    links: [],
+    title:
+      "도감 진입마다 151마리를 다시 받던 것을 loader 캐시로 최초 1회만 받도록 개선",
+    figureCaption: "데이터를 어디서 가져오는가 — 첫 진입과 두 번째 이후의 경로",
+    problem: [
+      "도감은 1세대 151마리를 전부 보여주는 화면인데, 한 마리를 채우려면 상세·종·타입·특성을 따로 불러야 했다. 화면 하나를 그리는 데 600건이 넘는 요청이 나갔다.",
+      "그 요청이 도감에 들어갈 때마다 반복됐다. 상세를 보고 뒤로 가면 다시, 새로고침하면 또 다시 처음부터 받았다.",
+      "PokéAPI는 공개 API라 남의 서버를 쓰는 것이기도 했고, 1세대 도감 데이터는 바뀌지 않는데도 매번 새로 받고 있었다.",
+    ],
+    solution: [
+      "요청을 컴포넌트가 아니라 React Router의 loader로 옮겼다. 화면이 그려지기 전에 데이터가 준비되므로, 각 컴포넌트가 로딩 상태를 따로 다루지 않아도 됐다.",
+      "loader에서 네트워크보다 스토어를 먼저 본다. 이미 채워져 있으면 요청을 보내지 않고 스토어 값을 그대로 돌려준다.",
+      "처음 받을 때는 Promise.all을 다단으로 묶어 약 600건을 동시에 처리하고, 한국어 이름·타입·특성을 단일 객체로 정규화했다. 그 결과를 Zustand persist로 localStorage에 남겨 새로고침 후에도 캐시가 살아 있게 했다.",
+    ],
+    result: [
+      "최초 1회 이후에는 도감을 몇 번 드나들어도, 새로고침을 해도 요청이 나가지 않는다. 상세에서 뒤로 가는 동작도 대기 없이 끝난다.",
+      "정렬 세 가지(도감순·이름순·타입순)와 북마크가 같은 스토어 데이터를 쓰므로, 정렬을 바꿀 때도 추가 요청이 없다. 화면은 이미 가진 배열을 다시 정렬할 뿐이다.",
+      "실패 처리도 한곳으로 모였다. loader에서 에러의 status와 message를 꺼내 라우터의 에러 경계로 넘기도록 해, 컴포넌트마다 흩어져 있던 try/catch를 걷어냈다.",
+    ],
+    links: [
+      { label: "저장소", href: "https://github.com/hoj0806/poke-card-flip" },
+      {
+        label: "개발일지",
+        href: "https://hjh0806.tistory.com/category/%ED%86%A0%EC%9D%B4%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/Pokemon%20Card%20Flip",
+      },
+      { label: "배포된 서비스", href: "https://poke-card-flip.vercel.app/" },
+    ],
   },
   {
     id: "case-5",
