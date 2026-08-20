@@ -9,7 +9,11 @@
 - 다이어그램은 SVG. PNG로 내보내지 않는다
 - 스크린샷은 WebP, sizes 지정, next/image 사용
 - 첫 화면 밖 이미지만 지연 로딩. Hero는 제외한다
-- 폰트는 서브셋 + preload, FOUT 방지
+- 폰트는 서브셋 + 첫 화면 subset preload
+- FOUT은 막지 않는다. 폴백을 메트릭으로 맞춰(size-adjust) 레이아웃 이동만 없애고,
+  글꼴이 늦게 도착해 교체되는 것은 허용한다. `font-display: swap`.
+  FOUT을 완전히 막으려면 `optional`을 써야 하는데, 그러면 첫 방문이
+  폴백으로 끝난다. 처음 오는 사람이 기준이므로 그 대가가 더 크다
 
 ## 접근성
 

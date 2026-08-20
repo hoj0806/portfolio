@@ -44,11 +44,19 @@ export const viewport: Viewport = {
 };
 
 /**
- * 첫 화면에 반드시 필요한 폰트 subset만 preload한다.
- * 91 = 기본 라틴 + 최빈 한글, 90 / 89 = 그다음 빈도의 한글.
- * 나머지 89개는 unicode-range에 걸릴 때만 브라우저가 받아 간다.
+ * 첫 화면에 실제로 쓰이는 폰트 subset만 preload한다.
+ * 91 = 기본 라틴 + 최빈 한글, 아래로 갈수록 낮은 빈도의 한글이다.
+ *
+ * 목록은 짐작이 아니라 첫 화면 문자열을 unicode-range에 대조해서 뽑았다.
+ * 이름 "홍재훈"만 해도 89 / 87 / 85 셋에 흩어져 있고, tagline은 84와 88을,
+ * 프로젝트명은 85를, 데스크톱 목차의 케이스 제목은 83과 86까지 끌어온다.
+ * 그래서 83~91 아홉 개다. 하나라도 빠지면 그 글자만 폴백으로 남는다.
+ *
+ * 문서 전체는 어차피 24개(약 600KB)를 받는다. 브라우저가 레이아웃을 잡을 때
+ * 화면 밖 글자까지 unicode-range를 훑기 때문이다. preload는 받는 양을 늘리는
+ * 게 아니라 첫 화면 몫을 먼저 받게 하는 것이다.
  */
-const preloadedFontSubsets = [91, 90, 89];
+const preloadedFontSubsets = [91, 90, 89, 88, 87, 86, 85, 84, 83];
 
 export default function RootLayout({
   children,
