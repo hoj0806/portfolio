@@ -59,7 +59,7 @@ export const projects: readonly Project[] = [
     id: "planyang",
     name: "Planyang",
     summary:
-      "대시보드를 팀원과 공유하고 초대·권한을 관리하는 일정 관리 협업 툴. 같은 포지션 4명이 함께 만들었고, 화면 작업이 시작되기 전에 Redux Toolkit 상태 레이어를 세우는 역할을 맡았습니다.",
+      "대시보드를 팀원과 공유하고 초대·권한을 관리하는 일정 관리 협업 툴. 같은 포지션 4명이 함께 만들었고, 화면 작업이 시작되기 전에 Redux Toolkit 상태 레이어를 세우는 역할을 맡았습니다. 로그인이 필요한 서비스라 체험 계정을 함께 둡니다.",
     stack: [
       "Next.js 14.2",
       "TypeScript 5.4",
@@ -73,5 +73,9 @@ export const projects: readonly Project[] = [
     deployUrl: "https://planyang-ac8o.vercel.app/",
     repoUrl: "https://github.com/sprint-part3-team1/Planyang",
     relatedCaseIds: ["case-4", "case-5"],
+    demoAccount: {
+      email: "demo.planyang@gmail.com",
+      password: "Planyang2024!",
+    },
   },
 ];

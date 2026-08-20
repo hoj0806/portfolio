@@ -61,6 +61,8 @@ export interface Project {
   repoUrl: string;
   /** 이 프로젝트와 이어지는 케이스. 카드에서 해당 케이스로 점프한다. */
   relatedCaseIds: readonly CaseId[];
+  /** 로그인이 필요한 서비스의 체험 계정. 없으면 표시하지 않는다. */
+  demoAccount?: { email: string; password: string };
 }
 
 export interface SiteProfile {

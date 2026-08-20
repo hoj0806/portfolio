@@ -1,6 +1,7 @@
 import { cases } from "@/content/cases";
 import type { CaseId, Project } from "@/content/types";
 
+import { DemoAccount } from "./DemoAccount";
 import { ProjectScreenshot } from "./ProjectScreenshot";
 
 function caseTitle(id: CaseId): string {
@@ -56,6 +57,13 @@ export function ProjectCard({ project }: { project: Project }) {
           저장소
         </a>
       </nav>
+
+      {project.demoAccount && (
+        <DemoAccount
+          email={project.demoAccount.email}
+          password={project.demoAccount.password}
+        />
+      )}
 
       {project.relatedCaseIds.length > 0 && (
         <ul className="mt-3 space-y-1 border-t border-border pt-3 text-sm">
