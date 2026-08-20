@@ -7,6 +7,7 @@ import { Case2Diagram, hasContent as case2HasContent } from "./case-2";
 import { Case3Diagram, hasContent as case3HasContent } from "./case-3";
 import { Case4Diagram, hasContent as case4HasContent } from "./case-4";
 import { Case5Diagram, hasContent as case5HasContent } from "./case-5";
+import { Case6Diagram, hasContent as case6HasContent } from "./case-6";
 
 export interface DiagramEntry {
   Component: ComponentType;
@@ -21,4 +22,5 @@ export const diagrams: Record<CaseId, DiagramEntry> = {
   "case-3": { Component: Case3Diagram, hasContent: case3HasContent },
   "case-4": { Component: Case4Diagram, hasContent: case4HasContent },
   "case-5": { Component: Case5Diagram, hasContent: case5HasContent },
+  "case-6": { Component: Case6Diagram, hasContent: case6HasContent },
 };

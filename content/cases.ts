@@ -1,14 +1,17 @@
 import type { Case } from "./types";
 
+/** 제목을 아직 안 쓴 케이스의 자리. 목차와 카드가 같은 문구를 쓴다. */
+export const caseTitlePlaceholder = "제목 예정";
+
 /**
- * 문제 해결 케이스 5개.
- * 5개 카드는 같은 컴포넌트에 이 데이터만 바꿔 렌더된다.
+ * 문제 해결 케이스 6개. 프로젝트 순서대로 번호가 이어진다.
+ * case-1~3 가지마켓, case-4 PokeCardFlip, case-5~6 Planyang.
+ * 어느 프로젝트에 붙는지는 projects.ts의 caseIds가 정한다.
+ * 6개 카드는 같은 컴포넌트에 이 데이터만 바꿔 렌더된다.
  */
 export const cases: readonly Case[] = [
   {
     id: "case-1",
-    projectLabel: "가지마켓 · 개인 / AI 협업",
-    projectId: "eggplant-market",
     title: "AI 협업 개발 체계 — 명세·린트·스킬로 품질을 규칙으로 강제",
     figureCaption:
       "문서·린트·테스트·기록이 각각 어느 지점에서 게이트로 작동하는가",
@@ -44,8 +47,6 @@ export const cases: readonly Case[] = [
   },
   {
     id: "case-2",
-    projectLabel: "가지마켓 · 개인 / AI 협업",
-    projectId: "eggplant-market",
     title: "1:1 채팅 읽음 표시 21초 지연을 구독-재조회 왕복 제거로 0.8초로 단축",
     figureCaption: "읽음 처리의 방아쇠가 어디에 걸려 있었는가 — 변경 전후 흐름",
     problem: [
@@ -80,8 +81,6 @@ export const cases: readonly Case[] = [
   },
   {
     id: "case-3",
-    projectLabel: "가지마켓 · 개인 / AI 협업",
-    projectId: "eggplant-market",
     title: "측정을 두 번 틀린 끝에 병목이 DB가 아님을 규명하고 변경하지 않기로 판단",
     figureCaption:
       "세 번의 측정과 그때마다 달라진 실행 계획 — 무엇이 틀렸고 무엇이 남았는가",
@@ -117,8 +116,15 @@ export const cases: readonly Case[] = [
   },
   {
     id: "case-4",
-    projectLabel: "Planyang · 부트캠프 팀 프로젝트 (FE 4명)",
-    projectId: "planyang",
+    title: "",
+    figureCaption: "",
+    problem: [],
+    solution: [],
+    result: [],
+    links: [],
+  },
+  {
+    id: "case-5",
     title:
       "FE 4인 협업에 앞서 상태 레이어를 먼저 세워 API 호출과 인증 흐름을 한곳으로 모음",
     figureCaption:
@@ -151,9 +157,7 @@ export const cases: readonly Case[] = [
     ],
   },
   {
-    id: "case-5",
-    projectLabel: "Planyang · 부트캠프 팀 프로젝트 (FE 4명)",
-    projectId: "planyang",
+    id: "case-6",
     title: "커서 초기화 분리로 무한 스크롤과 검색이 함께 동작하도록 해결",
     figureCaption:
       "목록을 이어 붙일 때와 갈아 끼울 때 — 커서가 남는 자리와 지워야 하는 자리",

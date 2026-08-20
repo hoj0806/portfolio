@@ -1,7 +1,7 @@
 import type { Project } from "./types";
 
 /**
- * 프로젝트 카드 3개.
+ * 프로젝트 3개. 각 프로젝트가 하나의 섹션이 되고, 헤더 아래에 caseIds의 케이스가 이어진다.
  *
  * name / deployUrl / repoUrl은 spec.md에서 확정된 값이다.
  * stack 표기는 이력서와 맞춘다.
@@ -31,7 +31,7 @@ export const projects: readonly Project[] = [
       "가지마켓 석관동 게시물 목록 — 사진·가격·찜과 조회 수가 담긴 카드 격자",
     deployUrl: "https://eggplant-market-ga6d-flame.vercel.app/",
     repoUrl: "https://github.com/hoj0806/Eggplant-Market",
-    relatedCaseIds: ["case-1", "case-2", "case-3"],
+    caseIds: ["case-1", "case-2", "case-3"],
   },
   {
     id: "poke-card-flip",
@@ -53,7 +53,7 @@ export const projects: readonly Project[] = [
       "PokeCardFlip 포켓몬 도감 — 정렬과 북마크 필터, 포켓몬 카드 격자",
     deployUrl: "https://poke-card-flip.vercel.app/",
     repoUrl: "https://github.com/hoj0806/poke-card-flip",
-    relatedCaseIds: [],
+    caseIds: ["case-4"],
   },
   {
     id: "planyang",
@@ -73,7 +73,7 @@ export const projects: readonly Project[] = [
       "Planyang 내 대시보드 — 대시보드 목록과 초대받은 대시보드 표",
     deployUrl: "https://planyang-ac8o.vercel.app/",
     repoUrl: "https://github.com/sprint-part3-team1/Planyang",
-    relatedCaseIds: ["case-4", "case-5"],
+    caseIds: ["case-5", "case-6"],
     demoAccount: {
       email: "demo.planyang@gmail.com",
       password: "Planyang2024!",

@@ -8,6 +8,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * 모바일 상단 고정 바 + 목차 토글.
+ * 목차는 프로젝트가 상위, 케이스 제목이 하위인 2단계다.
  * 1024px 이상에서는 숨고 DesktopToc이 대신 나온다.
  */
 export function MobileNavBar({ siteName }: { siteName: string }) {
@@ -38,17 +39,37 @@ export function MobileNavBar({ siteName }: { siteName: string }) {
       </div>
 
       {isOpen && (
-        <nav id="mobile-toc" aria-label="목차" className="border-t border-border">
+        <nav
+          id="mobile-toc"
+          aria-label="목차"
+          className="max-h-[70vh] overflow-y-auto border-t border-border"
+        >
           <ul className="px-4 py-2">
             {navItems.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
                   onClick={() => setIsOpen(false)}
-                  className="block py-2 text-sm text-muted hover:text-fg"
+                  className="block py-2 text-sm font-medium hover:text-fg"
                 >
                   {item.label}
                 </a>
+
+                {item.children.length > 0 && (
+                  <ul className="mb-1 border-l border-border pl-3">
+                    {item.children.map((child) => (
+                      <li key={child.id}>
+                        <a
+                          href={`#${child.id}`}
+                          onClick={() => setIsOpen(false)}
+                          className="block py-1.5 text-sm text-muted hover:text-fg"
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>

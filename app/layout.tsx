@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { DesktopToc } from "@/components/layout/DesktopToc";
 import { MobileNavBar } from "@/components/layout/MobileNavBar";
+import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { themeInitScript } from "@/lib/theme";
 
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
     description: shareDescription,
   },
 };
+
+/**
+ * "본문으로 건너뛰기"가 가리킬 자리. 본문은 첫 프로젝트에서 시작한다.
+ * 프로젝트 목록에서 끌어와 섹션이 바뀌어도 링크가 죽지 않게 한다.
+ */
+const skipTarget = projects[0]?.id ?? "hero";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -64,7 +71,7 @@ export default function RootLayout({
       </head>
       <body>
         <a
-          href="#cases"
+          href={`#${skipTarget}`}
           data-print="hide"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-surface focus:px-3 focus:py-2"
         >

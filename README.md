@@ -16,12 +16,12 @@ npm run typecheck  # tsc --noEmit
 
 | 무엇 | 어디 |
 | --- | --- |
-| 케이스 5개의 문제·해결·결과 (각 3줄) | `content/cases.ts` — `problem` / `solution` / `result` 배열 |
+| 케이스 6개의 문제·해결·결과 (각 3줄) | `content/cases.ts` — `problem` / `solution` / `result` 배열 |
 | 케이스 다이어그램 캡션 | `content/cases.ts` — `figureCaption` |
 | 케이스 관련 링크 | `content/cases.ts` — `links` |
-| 다이어그램 SVG 5개 | `components/diagrams/case-1.tsx` ~ `case-5.tsx` |
+| 다이어그램 SVG 6개 | `components/diagrams/case-1.tsx` ~ `case-6.tsx` |
 | 이름·직군·한 줄 소개·연락처 | `content/site.ts` |
-| 프로젝트 한 줄 설명, 관련 케이스 | `content/projects.ts` — `summary` / `relatedCaseIds` |
+| 프로젝트 한 줄 설명, 속한 케이스 | `content/projects.ts` — `summary` / `caseIds` |
 | 프로젝트 스크린샷 (WebP) | `public/screenshots/` → `content/projects.ts`의 `screenshot` |
 | 이력서 PDF | `public/resume.pdf` |
 
@@ -41,6 +41,7 @@ npm run typecheck  # tsc --noEmit
 app/          layout · page · 디자인 토큰(globals.css) · 폰트 정의(fonts.css)
 content/      본문 데이터와 타입. 컴포넌트에 문자열을 하드코딩하지 않는다
 components/   layout · sections · case · project · diagrams · ui
+              프로젝트 섹션 하나가 헤더 + 그 프로젝트의 케이스를 담는다
 hooks/        useScrollSpy — 목차 하이라이트
 lib/          theme — 라이트/다크 전환
 claude/       명세 문서 (spec · design · constraints)
