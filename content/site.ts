@@ -13,5 +13,5 @@ export const site: SiteProfile = {
   email: "ehswkfn123@naver.com",
   githubUrl: "https://github.com/hoj0806",
   blogUrl: "https://hjh0806.tistory.com/",
-  resumeUrl: "",
+  resumeUrl: "/resume.pdf",
 };

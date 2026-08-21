@@ -3,12 +3,14 @@ import { site } from "@/content/site";
 interface HeroLink {
   label: string;
   href: string;
+  /** PDF는 페이지를 벗어나지 않도록 새 탭에서 연다. */
+  newTab?: boolean;
 }
 
 /** Hero — 이름, 직군, 한 줄 소개, 링크 3개. */
 export function Hero() {
   const links: HeroLink[] = [
-    { label: "이력서 PDF", href: site.resumeUrl },
+    { label: "이력서 PDF", href: site.resumeUrl, newTab: true },
     { label: "GitHub", href: site.githubUrl },
     { label: "Blog", href: site.blogUrl },
   ].filter((link) => link.href !== "");
@@ -31,6 +33,8 @@ export function Hero() {
             <a
               key={link.href}
               href={link.href}
+              target={link.newTab ? "_blank" : undefined}
+              rel={link.newTab ? "noopener noreferrer" : undefined}
               className="text-accent underline underline-offset-4 hover:no-underline"
             >
               {link.label}
