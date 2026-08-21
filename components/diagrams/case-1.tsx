@@ -113,7 +113,7 @@ export function Case1Diagram() {
           받아들일지 판단
         </text>
         <text x="496" y="441" dominantBaseline="central">
-          내가 서는 자리
+          제가 서는 자리
         </text>
       </g>
     </svg>
